@@ -3,10 +3,10 @@ import { useState } from "react";
 import { Button } from "./ui/button";
 
 const navItems = [
-  { label: "Services", href: "#services" },
-  { label: "Agencies", href: "#agencies" },
-  { label: "News", href: "#news" },
-  { label: "About", href: "#about" },
+  { label: "Services", href: "/services" },
+  { label: "Agencies", href: "/agencies" },
+  { label: "News", href: "/news" },
+  { label: "About", href: "/about" },
 ];
 
 export function Header() {
