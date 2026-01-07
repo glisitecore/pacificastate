@@ -1,5 +1,8 @@
 import { ArrowRight, Calendar } from "lucide-react";
 import { Button } from "./ui/button";
+import newsEvImage from "@/assets/news-ev.jpg";
+import newsHealthImage from "@/assets/news-health.jpg";
+import newsCoastImage from "@/assets/news-coast.jpg";
 
 const news = [
   {
@@ -7,21 +10,21 @@ const news = [
     category: "Transportation",
     title: "New Electric Vehicle Rebate Program Launches Statewide",
     excerpt: "Pacifica residents can now apply for up to $5,000 in rebates for new EV purchases.",
-    image: "https://images.unsplash.com/photo-1593941707882-a5bba14938c7?w=400&h=250&fit=crop",
+    image: newsEvImage,
   },
   {
     date: "January 3, 2026",
     category: "Health",
     title: "Expanded Healthcare Coverage for Young Adults",
     excerpt: "New legislation extends coverage to all residents under 26 regardless of parental insurance.",
-    image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=400&h=250&fit=crop",
+    image: newsHealthImage,
   },
   {
     date: "December 28, 2025",
     category: "Environment",
     title: "Coastal Protection Initiative Receives Federal Funding",
     excerpt: "$200 million allocated for sea wall construction and wetland restoration projects.",
-    image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400&h=250&fit=crop",
+    image: newsCoastImage,
   },
 ];
 
