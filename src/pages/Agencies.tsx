@@ -1,27 +1,10 @@
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
-import { ExternalLink, Search } from "lucide-react";
+import { ArrowRight, Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
-
-const agencies = [
-  { name: "Department of Motor Vehicles", abbr: "DMV", category: "Transportation" },
-  { name: "Employment Development Department", abbr: "EDD", category: "Employment" },
-  { name: "Franchise Tax Board", abbr: "FTB", category: "Finance" },
-  { name: "Department of Education", abbr: "DOE", category: "Education" },
-  { name: "Department of Health Services", abbr: "DHS", category: "Health" },
-  { name: "Environmental Protection Agency", abbr: "EPA", category: "Environment" },
-  { name: "Department of Justice", abbr: "DOJ", category: "Legal" },
-  { name: "Department of Housing", abbr: "DOH", category: "Housing" },
-  { name: "Department of Transportation", abbr: "DOT", category: "Transportation" },
-  { name: "Department of Social Services", abbr: "DSS", category: "Social Services" },
-  { name: "Department of Consumer Affairs", abbr: "DCA", category: "Consumer Protection" },
-  { name: "Department of Public Safety", abbr: "DPS", category: "Public Safety" },
-  { name: "Parks and Recreation Department", abbr: "PRD", category: "Recreation" },
-  { name: "Department of Agriculture", abbr: "DOA", category: "Agriculture" },
-  { name: "Department of Water Resources", abbr: "DWR", category: "Environment" },
-  { name: "State Controller's Office", abbr: "SCO", category: "Finance" },
-];
+import { Link } from "react-router-dom";
+import { agencies, agencyCategories } from "@/data/agencies";
 
 const Agencies = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -33,7 +16,31 @@ const Agencies = () => {
       agency.category.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  const categories = [...new Set(agencies.map((a) => a.category))].sort();
+  const categories = agencyCategories();
+
+  const AgencyRow = ({ agency }: { agency: (typeof agencies)[number] }) => {
+    const Icon = agency.icon;
+    return (
+      <Link
+        to={`/agencies/${agency.slug}`}
+        className="flex items-center justify-between p-4 bg-card rounded-lg border border-border hover:border-primary hover:shadow-sm transition-all group"
+      >
+        <div className="flex items-center gap-4">
+          <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+            <Icon className="h-5 w-5 text-primary" />
+          </div>
+          <div>
+            <div className="flex items-center gap-2">
+              <span className="font-mono text-xs font-bold text-primary">{agency.abbr}</span>
+              <span className="font-medium">{agency.name}</span>
+            </div>
+            <p className="text-sm text-muted-foreground line-clamp-1">{agency.tagline}</p>
+          </div>
+        </div>
+        <ArrowRight className="h-4 w-4 text-muted-foreground group-hover:text-primary transition-colors shrink-0 ml-3" />
+      </Link>
+    );
+  };
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -44,7 +51,7 @@ const Agencies = () => {
           <div className="container">
             <h1 className="font-serif text-4xl md:text-5xl font-bold mb-4">State Agencies</h1>
             <p className="text-lg text-primary-foreground/80 max-w-2xl">
-              Find information about Pacifica's government departments and agencies.
+              Explore Pacifica's {agencies.length} state agencies and the services they provide.
             </p>
           </div>
         </section>
@@ -64,7 +71,7 @@ const Agencies = () => {
           </div>
         </section>
 
-        {/* Agencies by Category */}
+        {/* Agencies */}
         <section className="py-16">
           <div className="container">
             {searchTerm ? (
@@ -73,22 +80,7 @@ const Agencies = () => {
                   Search Results ({filteredAgencies.length})
                 </h2>
                 {filteredAgencies.map((agency) => (
-                  <a
-                    key={agency.abbr}
-                    href={`/agencies/${agency.abbr.toLowerCase()}`}
-                    className="flex items-center justify-between p-4 bg-card rounded-lg border border-border hover:border-primary transition-colors group"
-                  >
-                    <div className="flex items-center gap-4">
-                      <span className="font-mono text-sm font-bold text-primary bg-primary/10 px-2 py-1 rounded">
-                        {agency.abbr}
-                      </span>
-                      <div>
-                        <span className="font-medium">{agency.name}</span>
-                        <span className="text-sm text-muted-foreground ml-2">({agency.category})</span>
-                      </div>
-                    </div>
-                    <ExternalLink className="h-4 w-4 text-muted-foreground group-hover:text-primary transition-colors" />
-                  </a>
+                  <AgencyRow key={agency.slug} agency={agency} />
                 ))}
               </div>
             ) : (
@@ -100,19 +92,7 @@ const Agencies = () => {
                       {agencies
                         .filter((a) => a.category === category)
                         .map((agency) => (
-                          <a
-                            key={agency.abbr}
-                            href={`/agencies/${agency.abbr.toLowerCase()}`}
-                            className="flex items-center justify-between p-4 bg-card rounded-lg border border-border hover:border-primary transition-colors group"
-                          >
-                            <div className="flex items-center gap-4">
-                              <span className="font-mono text-sm font-bold text-primary bg-primary/10 px-2 py-1 rounded">
-                                {agency.abbr}
-                              </span>
-                              <span className="font-medium">{agency.name}</span>
-                            </div>
-                            <ExternalLink className="h-4 w-4 text-muted-foreground group-hover:text-primary transition-colors" />
-                          </a>
+                          <AgencyRow key={agency.slug} agency={agency} />
                         ))}
                     </div>
                   </div>
