@@ -1,27 +1,10 @@
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
-import { ExternalLink, Search } from "lucide-react";
+import { ArrowRight, Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
-
-const agencies = [
-  { name: "Department of Motor Vehicles", abbr: "DMV", category: "Transportation" },
-  { name: "Employment Development Department", abbr: "EDD", category: "Employment" },
-  { name: "Franchise Tax Board", abbr: "FTB", category: "Finance" },
-  { name: "Department of Education", abbr: "DOE", category: "Education" },
-  { name: "Department of Health Services", abbr: "DHS", category: "Health" },
-  { name: "Environmental Protection Agency", abbr: "EPA", category: "Environment" },
-  { name: "Department of Justice", abbr: "DOJ", category: "Legal" },
-  { name: "Department of Housing", abbr: "DOH", category: "Housing" },
-  { name: "Department of Transportation", abbr: "DOT", category: "Transportation" },
-  { name: "Department of Social Services", abbr: "DSS", category: "Social Services" },
-  { name: "Department of Consumer Affairs", abbr: "DCA", category: "Consumer Protection" },
-  { name: "Department of Public Safety", abbr: "DPS", category: "Public Safety" },
-  { name: "Parks and Recreation Department", abbr: "PRD", category: "Recreation" },
-  { name: "Department of Agriculture", abbr: "DOA", category: "Agriculture" },
-  { name: "Department of Water Resources", abbr: "DWR", category: "Environment" },
-  { name: "State Controller's Office", abbr: "SCO", category: "Finance" },
-];
+import { Link } from "react-router-dom";
+import { agencies, agencyCategories } from "@/data/agencies";
 
 const Agencies = () => {
   const [searchTerm, setSearchTerm] = useState("");
