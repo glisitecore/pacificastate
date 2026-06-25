@@ -21,6 +21,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <UserWayLoader />
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/services" element={<Services />} />
