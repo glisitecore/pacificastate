@@ -12,6 +12,7 @@ import News from "./pages/News";
 import NewsArticle from "./pages/NewsArticle";
 import About from "./pages/About";
 import NotFound from "./pages/NotFound";
+import DotHome from "./dot-site/DotHome";
 
 const queryClient = new QueryClient();
 
@@ -30,6 +31,7 @@ const App = () => (
           <Route path="/news" element={<News />} />
           <Route path="/news/:slug" element={<NewsArticle />} />
           <Route path="/about" element={<About />} />
+          <Route path="/dot-site" element={<DotHome />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
